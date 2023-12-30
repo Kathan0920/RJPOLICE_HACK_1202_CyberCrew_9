@@ -1,0 +1,8 @@
+#application {
+    display: flex;
+    margin: 20px;
+}
+#application * {
+    margin: 20px;
+
+}

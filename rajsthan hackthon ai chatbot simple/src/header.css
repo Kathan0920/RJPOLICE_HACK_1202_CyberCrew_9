@@ -1,0 +1,44 @@
+#nav {
+  background-color: black;
+  color: white;
+  
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-between;
+}
+#nav #logoname {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+#nav #logoname *{
+  margin: 12px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+#nav ul {
+    list-style-type: none;
+  display: flex;
+  justify-content: end;
+}
+#nav ul li {
+  padding: 15px;
+}
+#nav img{
+  zoom: 41%;
+    height: 200px;
+    object-fit: none;
+    border-radius: 15px;
+}
+#nav a{
+  
+    text-decoration: none;
+    color:white;
+}
+body{
+  margin: 0;
+}
