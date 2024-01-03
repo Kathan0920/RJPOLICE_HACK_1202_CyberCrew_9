@@ -6,12 +6,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
-raw_data = pd.read_csv('mail_data.csv')
+raw_data = pd.read_csv('Datasets/phishing_data.csv')
 
 data = raw_data.where((pd.notnull(raw_data)),'')
 print(data.head())
 # print(data.shape)
-
 # giving label: spam as 1; ham as 0
 data.loc[data['Category'] == 'ham', 'Category'] = 0
 data.loc[data['Category'] == 'spam', 'Category'] = 1
@@ -23,7 +22,7 @@ Y = data['Category']
 # print(Y)
 
 # splitting data into test and training data
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.1, random_state=3)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=3)
 # print(X.shape)
 # print(X_train)
 # print(X_test)
@@ -50,7 +49,9 @@ accuracy_of_model = accuracy_score(Y_test, Y_pred)
 
 print("Accuracy: ", accuracy_of_model * 100, "%")
 
-input_mail = ["URGENT! Your Mobile No was awarded a £2,000 Bonus Caller Prize on 1/08/03! This is our 2nd attempt to contact YOU! Call 0871-4719-523 BOX95QU BT National Rate"]
+# input_mail = ["URGENT! Your Mobile No was awarded a £2,000 Bonus Caller Prize on 1/08/03! This is our 2nd attempt to contact YOU! Call 0871-4719-523 BOX95QU BT National Rate"]
+# input_mail = ["URGENT: Your account requires immediate attention. Click now to verify your identity and prevent account suspension. Failure to act may result in service disruption."]
+input_mail = ["Dear, your account has been temporarily locked due to multiple login attempts. Click the link to verify your identity and unlock your account. Ignoring this message may lead to account suspension."]
 input_data_features = feature_extraction.transform(input_mail)
 
 prediction = model.predict(input_data_features)
