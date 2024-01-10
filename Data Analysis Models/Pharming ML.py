@@ -3,7 +3,6 @@
 
 # In[24]:
 
-
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -13,7 +12,6 @@ import math
 
 pharm = pd.read_csv(r"C:\Users\satish\Downloads\pharming_data.csv")
 pharm
-
 
 # In[25]:
 
@@ -198,29 +196,9 @@ accuracy_of_model=accuracy_score(y_test, predictions)
 from sklearn.feature_extraction.text import TfidfVectorizer
 print("Accuracy: ", accuracy_of_model * 100, "%")
 
-
-# feature_extraction = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
-# X_features = feature_extraction.fit_transform(X[])  # Replace 'YourTextColumn' with the column containing text data
-
-# # Apply the same TF-IDF vectorizer used during training to the new input
-# input_domain = ["example-phishing-domain.com"]
-# input_data_features = feature_extraction.transform(input_domain)
-
-# # Make a prediction
-# prediction = logmodel.predict(input_data_features)
-
-# # Display the prediction
-# if prediction[0] == 1:
-#     print("Attack detected (pharming)")
-# else:
-#     print("Non-attack (legitimate domain)")
-
 # Example input for prediction
 new_input = pd.DataFrame({
-    'DNS Spoofing': [True],  
-    'Type: A Rec': [False],
-    'Type: AAAA Rec': [True],
-    'No DNSSEC': [False],
+    'DNS Spoofing': [True],' Type: A Rec': [False],' Type: AAAA Rec': [True],'No DNSSEC': [False],
 })
 
 # Use the trained model to make predictions
@@ -231,9 +209,6 @@ if prediction[0] == 1:
     print("Attack detected (pharming)")
 else:
     print("Non-attack (legitimate domain)")
-
-
-# In[ ]:
 
 
 
