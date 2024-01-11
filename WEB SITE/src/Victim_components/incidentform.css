@@ -1,0 +1,70 @@
+#incidentform .dropdownContainer {
+  width: 100%;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: row;
+}
+#incidentform .dropdownLabel {
+  box-sizing: content-box;
+  display: block;
+  width: 40%;
+  padding: 10px;
+}
+#incidentform .dropdownSelect {
+  width: 90%;
+  padding: 12px 15px;
+  background-color: #eee;
+  border: none;
+}
+
+#incidentform label,#incidentform button {
+  margin: 12px;
+}
+
+#incidentform #formsubmit {
+  width: auto;
+  padding: 6px;
+  background-color:rgb(59, 59, 135);
+  color: white;
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 15px;
+  align-self: center;
+  
+}
+
+#incidentform {
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box;
+  /* border: 2px solid red; */
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  /* align-items: center; */
+  width: 90vw;
+}
+#incidentform > * {
+  display: flex;
+  margin: 12px;
+  flex-direction: row;
+  align-items: center;
+  max-width: 50vw;
+}
+
+#incidentform input {
+  width: 90%;
+}
+#incidentform #money_div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* flex-basis: content; */
+  justify-content: center;
+  align-items: center;
+}
+#incidentform #money_div input{
+  /* max-width: 50%; */
+  width: 50%;
+}

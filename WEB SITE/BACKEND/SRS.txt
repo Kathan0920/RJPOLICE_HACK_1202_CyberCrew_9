@@ -1,0 +1,9 @@
+USERS :-
+    ADMIN
+    
+
+ADMIN :-
+    CREATE A ELEMENT
+    MONEY UPDATE
+
+SHOW

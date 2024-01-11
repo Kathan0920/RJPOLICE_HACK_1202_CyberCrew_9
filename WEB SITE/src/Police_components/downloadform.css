@@ -1,0 +1,19 @@
+#downloadform_section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+#downloadform_section ul li{
+    display: flex;
+    flex-direction: row;
+    margin: 17px;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    padding: 17px;
+}
+#downloadform_section ul li div{
+    margin: 15px;
+}

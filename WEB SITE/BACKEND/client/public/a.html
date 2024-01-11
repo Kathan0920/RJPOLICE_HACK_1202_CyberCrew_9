@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu</title>
+</head>
+<body>
+    <input type="text" >
+    <button id="getrequest">getrequest</button>
+    hii
+</body>
+<script>
+    document.getElementById('getrequest').addEventListener('click',async(e)=>{
+        e.preventDefault();
+        await getrequest();
+    })
+    const getrequest = async()=>{
+        const res = await fetch('/abc',{
+            method:"GET"
+        }) 
+        console.log("res",res);
+        const response =  await res.text()
+        console.log("response",response);
+
+    }
+</script>
+</html>
