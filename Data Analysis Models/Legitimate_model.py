@@ -11,10 +11,11 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from xgboost import XGBClassifier
+import text_extraction
 from sklearn.metrics import accuracy_score, classification_report
 
 # Assuming your data is in a CSV file named 'fraud_data.csv'
-data = pd.read_csv(r"C:\Users\satish\Downloads\Final_dataset.csv")
+data = pd.read_csv("Datasets/Final_dataset.csv")
 
 # Convert "Amount" column to numeric format
 data['Amount'] = data['Amount'].replace('[\$,]', '', regex=True).astype(float)
@@ -54,7 +55,7 @@ pipeline = Pipeline(steps=[('preprocessor', preprocessor),
                              ('classifier', model)])
 
 # Split the data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = atrain_test_split(X, y, test_size=0.2, random_state=42)
 
 # Train the model
 pipeline.fit(X_train, y_train)
@@ -74,7 +75,6 @@ def preprocess_input(input_data):
     # Assuming input_data is a dictionary with keys corresponding to the column names
     # You may need to modify this based on the actual input format
     input_df = pd.DataFrame([input_data])
-    
     # Convert "Amount" column to numeric format
     input_df['Amount'] = input_df['Amount'].replace('[\$,]', '', regex=True).astype(float)
     
@@ -105,8 +105,9 @@ input_data = {
 
 # Predict legitimacy
 prediction_result = predict_legitimacy(input_data)
-
-if prediction_result == 1:
+print(prediction_result)
+text_extraction_result = text_extraction.get_user_input()
+if prediction_result == 1 and text_extraction_result == 1:
     print("The input is predicted to be legitimate.")
 else:
     print("The input is predicted to be fraudulent.")
@@ -115,3 +116,5 @@ else:
 
 
 
+
+# %%
