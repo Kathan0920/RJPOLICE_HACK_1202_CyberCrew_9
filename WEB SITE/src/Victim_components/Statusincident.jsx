@@ -96,11 +96,15 @@ function statusincident() {
              Application Acceped:-
             {item["verifybypolice"]}
           </p>:'Waiting for Police Verification'}
-
           {item['verifybypolice']=='yes'?item['verifybybank']?<p>
             bank Status :-
             {item['verifybybank']}
           </p>:'waiting for bank response':'  '}
+          <p></p>
+          {item['verifybypolice']=='yes'?item['verifybycourt']?<p>
+            Court Descion :-
+            {item['verifybycourt']}
+          </p>:'waiting for court Descion':''}
           </div>
           </li>
         ))}

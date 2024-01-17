@@ -101,12 +101,18 @@ console.log(data);
             Police Verification :-
             {item["verifybypolice"]}
           </p>
-          <p>Bank Status :-
-            {item['verifybybank']}
+          <p>
+            Bank Status :-
+            {item["verifybybank"]}
           </p>
-          {item["verifybycourt"]?<p>Court Desion :-
+          <p>
+            Your Verification :-
+            {item["verifybypolice"]}
+          </p>
+          <p>
+            Court Decision :-
             {item['verifybycourt']}
-          </p>:'Court Decision pending'}
+          </p>
         </div>
       </li>
     ))}

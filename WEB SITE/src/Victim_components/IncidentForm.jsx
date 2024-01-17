@@ -101,7 +101,7 @@ function IncidentForm() {
       });
       if(res){
         alert('Uploaded Sucessfully')
-        document.location=document.location.href
+        // document.location=document.location.href
 
       }else{
         alert('there is problem in request')

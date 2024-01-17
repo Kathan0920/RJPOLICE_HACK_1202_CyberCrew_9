@@ -37,6 +37,9 @@ const incidentformSchema = new mongoose.Schema({
   
   verifybybank:String,
   verifybybankemail:String,
+
+  verifybycourt:String,
+  verifybycourtemail:String,
   
 });
 const incidentformModel = mongoose.model("incidentform", incidentformSchema);

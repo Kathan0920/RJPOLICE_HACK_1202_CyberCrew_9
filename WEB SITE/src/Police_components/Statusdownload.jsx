@@ -103,7 +103,11 @@ console.log(data);
           </p>
           {item['verifybybank']?<p>
             bank Status :-
-            {item['verifybybank']}
+            {JSON.stringify(item['verifybybank'])}
+          </p>:''}
+          {item['verifybycourt']?<p>
+            Court Desicison :-
+            {JSON.stringify(item['verifybycourt'])}
           </p>:''}
         </div>
       </li>

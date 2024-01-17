@@ -4,12 +4,13 @@ import Downloadform from '../Police_components/Downloadform'
 import Menubar from '../Victim_components/Menubar';
 import Statusdownload from '../Police_components/Statusdownload';
 
-function Dashboard_police() {
+function Dashboard_police(props) {
   const [state, setstate] = useState('dashboard');
 
   return (
     <>
-    <Navbar />
+    <Navbar usetype={props.usetype} />
+
     <Menubar change={setstate}/>
     {state == "status"?<Statusdownload />:<Downloadform/>}
     </>

@@ -41,10 +41,10 @@
             element={
               isAuthenticated ? (
                 <>
-                {role == "Victim" && <Dashboard_victim />}
-                {role == "Police" && <Dashboard_police />}
-                {role == "Bank" &&   <Dashboard_bank />}
-                {role == "Court" &&  <Dashboard_court />}
+                {role == "Victim" && <Dashboard_victim usetype={role} />}
+                {role == "Police" && <Dashboard_police usetype={role} />}
+                {role == "Bank" &&   <Dashboard_bank usetype={role}  />}
+                {role == "Court" &&  <Dashboard_court usetype={role} />}
               </>
               ) : (
                 <Navigate to="/login" />

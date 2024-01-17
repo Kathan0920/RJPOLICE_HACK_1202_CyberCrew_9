@@ -3,7 +3,7 @@ import img from "./navbar.png";
 import "./navbar.css";
 import { post } from "../Rest";
 
-function Navbar() {
+function Navbar(props) {
   const [email,setemail]=useState('')
   const handlelogout = (e)=>{
     document.cookie="token=;expires="+(new Date()).toUTCString()
@@ -31,9 +31,9 @@ function Navbar() {
   const seconds = timeRemaining % 60;     
   return (
     <nav id="victim_navbar">
-      <img src={img} id="navbarimg" alt="" />
+      <img src={img} style={{display:props.usetype=='Bank'||props.usetype=='Court'?'none':'block'}} id="navbarimg" alt="" />
       <div id="title_div">
-        <div>user ID:-{email}</div>
+        <div><pre>user ID:-{email}      user type:- {props.usetype}</pre></div>
         <div>Report Cyber Crime</div>
         <div id='logout_div'>
           <div>Session Time out in {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</div>

@@ -69,14 +69,20 @@ module.exports.uploadverify = async (req) => {
     } else if (check == "Bank") {
       data["verifybybankemail"] = emaill;
       data["verifybybank"] = req.body.verifybypolice;
+      
+    } else if(check=="Court") {
+      data["verifybycourtemail"] = emaill;
+      data["verifybycourt"] = req.body.verifybypolice;
 
-    } else {
+    }
+      else {
       return false;
     }
     let verifyupdate = await incidentformModel.updateOne(
       { applicationNo: req.body.applicationNo },
       { $set: data }
     );
+    console.log("object");
     if (verifyupdate.matchedCount == 0) {
       return false;
     }
@@ -108,6 +114,7 @@ module.exports.downloadformsnotverify = async (token) => {
       {
         verifybypolice: "yes",
         verifybypoliceemail: { $exists: true },
+        bankbool:true,
         verifybybank: { $exists: false },
         verifybybankemail: { $exists: false },
       },
@@ -115,55 +122,105 @@ module.exports.downloadformsnotverify = async (token) => {
       );
       
       return data;
-    } else {
-      return false;
-    }
-  };
-  module.exports.downloadforms = async (token) => {
-    await mongoose.connect(DBurl, {
-      dbName: "rajasthan_hackthon",
-    });
-    let check = await findusertype(token);
-    let emaill = await email(token);
-    if (check == "Police") {
-      if (check && check != false && check != "") {
-        let data = await incidentformModel.find(
-          {
-            verifybypolice: { $exists: true },
-          verifybypoliceemail: emaill,
+    } else if(check=="Court"){
+      let data = await incidentformModel.find(
+        {
+          $or: [
+            {
+              $and: [
+                { bankbool: true },
+                { verifybybank: { $exists: true } },
+                { verifybypolice: "yes" },
+                { verifybypoliceemail: { $exists: true } }
+                // Add other conditions if needed
+              ]
+            },
+            {
+              $and: [
+                { bankbool: false },
+                { verifybybank: { $exists: false } },
+                { verifybypolice: "yes" },
+                { verifybypoliceemail: { $exists: true } }
+                // Add other conditions if needed
+              ]
+            }
+          ]
         },
         { __v: 0, __id: 0 }
         );
         
         return data;
-      } else {
+        
+      }
+      else {
         return false;
       }
-    } else if (check == "Victim") {
-      if (check && check != false && check != "") {
-        let data = await incidentformModel.find(
-          { email: emaill },
-          { __v: 0, __id: 0 }
-          );
-          // console.log(object);
-          return data;
-        } else {
-          return false;
-        }
-      } else if (check == "Bank") {
-        let data = await incidentformModel.find(
-          {
-            verifybypolice: "yes",
-            verifybypoliceemail: { $exists: true },
-            verifybybank: { $exists: true },
-            verifybybankemail: emaill,
-          },
-          { __v: 0, __id: 0 }
-          );
-          // console.log(object);
-          return data;
-        } else {
-          return false;
+    };
+    module.exports.downloadforms = async (token) => {
+      await mongoose.connect(DBurl, {
+        dbName: "rajasthan_hackthon",
+      });
+      let check = await findusertype(token);
+      let emaill = await email(token);
+      if (check == "Police") {
+        if (check && check != false && check != "") {
+          let data = await incidentformModel.find(
+            {
+              verifybypolice: { $exists: true },
+              verifybypoliceemail: emaill,
+            },
+            { __v: 0, __id: 0 }
+            );
+            
+            return data;
+          } else {
+            return false;
+          }
+        } else if (check == "Victim") {
+          if (check && check != false && check != "") {
+            let data = await incidentformModel.find(
+              { email: emaill },
+              { __v: 0, __id: 0 }
+              );
+              // console.log(object);
+              return data;
+            } else {
+              return false;
+            }
+          } else if (check == "Bank") {
+            let data = await incidentformModel.find(
+              {
+                verifybypolice: "yes",
+                verifybypoliceemail: { $exists: true },
+                bankbool:true,
+
+                verifybybank: { $exists: true },
+                verifybybankemail: emaill,
+              },
+              { __v: 0, __id: 0 }
+              );
+              // console.log(object);
+              return data;
+              
+            } else if (check == "Court") {
+              let data = await incidentformModel.find(
+                {
+                  verifybypolice: "yes",
+                  verifybypoliceemail: { $exists: true },
+                  verifybybank: "yes",
+                  verifybybankemail: {$exists:true},
+                  verifybycourt: { $exists: true },
+                  verifybycourtemail: emaill,
+                  
+                },
+                { __v: 0, __id: 0 }
+                );
+                // console.log(object);
+                return data;
+              } 
+              
+              else {
+                return false;
   }
 };
 module.exports.downloadimage = async (token) => {
