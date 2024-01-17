@@ -23,7 +23,8 @@
 
 #incidentform #formsubmit {
   width: auto;
-  padding: 6px;
+  padding: 12px;
+  font-size: 30px;
   background-color:rgb(59, 59, 135);
   color: white;
   border-radius: 12px;

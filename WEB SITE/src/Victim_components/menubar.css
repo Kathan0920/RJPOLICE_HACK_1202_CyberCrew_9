@@ -3,10 +3,14 @@
     flex-direction: row;
     justify-content:space-around;
     margin: 12px;
+    padding: 12px;
+    background-color:rgb(234, 231, 231);
+    
 }
 #menubar >  * {
-    padding: 10px 21px;
+    padding: 15px 21px;
     border-radius: 12px;
     background: rgb(76, 76, 203);
     color: white;
+    border: none;
 }

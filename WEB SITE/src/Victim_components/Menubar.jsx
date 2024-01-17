@@ -5,8 +5,8 @@ function Menubar(props) {
   
   return (
     <section id='menubar'>
-        <div><button onClick={()=>props.change('dashboard')}>Dashboard</button></div>
-        <div><button onClick={()=>props.change('status')}>Status</button></div>
+        <button onClick={()=>props.change('dashboard')}>Dashboard</button>
+        <button onClick={()=>props.change('status')}>Status</button>
     </section>
   )
 }

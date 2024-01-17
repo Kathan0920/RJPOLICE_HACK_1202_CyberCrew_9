@@ -281,7 +281,7 @@ function IncidentForm() {
         ></textarea>
       </div>
       <button type="submit" id="formsubmit" onClick={upload}>
-        Save & Next
+        Submit Application
       </button>
     </section>
   );

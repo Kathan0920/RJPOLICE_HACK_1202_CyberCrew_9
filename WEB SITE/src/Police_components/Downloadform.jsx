@@ -42,7 +42,8 @@ console.log(data);
     };
     return <section id="downloadform_section">
       <ul>
-      {data.length==0 ?'No Entries are there':data.map(item => (
+      {data.length==0 ?<div className="loading-container">
+      <div className="loader"></div></div>:data.map(item => (
         
           <li key={item.applicationNo}>
             {/* {Object.entries(item).map(([key, value]) => (

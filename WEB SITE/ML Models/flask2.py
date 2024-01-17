@@ -1,3 +1,7 @@
+import base64
+from PIL import Image
+from io import BytesIO
+
 from flask import Flask, jsonify, request
 import joblib
 app = Flask(__name__)
@@ -5,11 +9,39 @@ import Legitimate_model
 # Load the trained pipeline
 pipeline = joblib.load('fraud_detection_pipeline.pkl')
 import json
+import text_extraction
+
+def base64_to_image(base64_string, output_file):
+    # Decode the base64 string
+    image_data = base64.b64decode(base64_string)
+
+    # Create a BytesIO object from the decoded data
+    image_stream = BytesIO(image_data)
+
+    # Open the image using Pillow
+    image = Image.open(image_stream)
+
+    # Save the image to the specified output file
+    image.save(output_file)
+
+# Example usage:
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         # Get the JSON data from the request
         input_data = request.get_json()
+        
+
+        output_file_path = f"{input_data.get('applicationNo')}.png"
+
+        base64_string = input_data.get('proof')
+        base64_string = base64_string.replace("data:image/png;base64,", "")
+
+
+        base64_to_image(base64_string, output_file=output_file_path)
+
         inputt=''
         if input_data.get("bankbool")==True:
             
@@ -24,7 +56,7 @@ def predict():
             }
         else :
             inputt={
-                 'Complaint_ID': input_data.get('applicationNo'),
+            'Complaint_ID': input_data.get('applicationNo'),
             'Complainant_Name': input_data.get('email'),
             'Date_Time': input_data.get('date'),
             'Fraud_Type': input_data.get('subcategory'),
@@ -36,7 +68,11 @@ def predict():
         # Use the model for prediction
         result=''
         prediction = Legitimate_model.predict_legitimacy(inputt)
-        if prediction == 1:
+
+        prediction2 = text_extraction.get_user_input(f"{input_data.get('applicationNo')}.png")
+        print("prediction",prediction)
+        print("prediction2",prediction2)
+        if prediction == 1 and prediction2==1:
             result = "true"
         else:
             result = "false"

@@ -15,10 +15,12 @@
     font-weight: 500;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background: #dbdbdb;
-
+    
 }
 #title_div > *{
+    align-items: center;    
     margin: 20px 60px;
 
 }
@@ -26,8 +28,22 @@
     display: flex;
     flex-direction: row;
 }
+
 #logout_div > button{
-    /* padding: ; */
+    background: red;
+    color: white;
+    font-size: 17px;
+    border-radius: 6px;
+    padding:11px ;
     margin: auto;
     margin-left: 100px ;    
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: none;
+}
+button:hover{
+    cursor: pointer;
+}
+*{
+    user-select: none;
+
 }

@@ -40,8 +40,9 @@ console.log(data);
     return new Blob([byteArray], { type: 'image/png' }); // Adjust the MIME type accordingly
   };
   return ( <section id="statusincident_section" className="status"> 
-  <ul>``
-    {data.map((item) => (
+  <ul>
+    {data.length==0 ?<div className="loading-container">
+      <div className="loader"></div></div>:data.map((item) => (
       <li key={item.applicationNo}>
         {/* {Object.entries(item).map(([key, value]) => (
         <p key={key}>

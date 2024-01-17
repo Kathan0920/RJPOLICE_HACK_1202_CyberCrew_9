@@ -29,7 +29,8 @@ function statusincident() {
   return (
     <section id="statusincident_section" className="status"> 
       <ul>
-        {data.map((item) => (
+        {data.length==0 ?<div className="loading-container">
+      <div className="loader"></div></div>:data.map((item) => (
           <li key={item.applicationNo}>
             {/* {Object.entries(item).map(([key, value]) => (
             <p key={key}>
