@@ -9,6 +9,7 @@ function Dashboard_bank() {
 
   return (
     <>
+    <Navbar />
     <Menubar change={setstate}/>
     {state == "status"?<Statusdownload />:<Downloadform/>}
     </>

@@ -100,7 +100,7 @@ function statusincident() {
           {item['verifybypolice']=='yes'?item['verifybybank']?<p>
             bank Status :-
             {item['verifybybank']}
-          </p>:'waiting for bank response':''}
+          </p>:'waiting for bank response':'  '}
           </div>
           </li>
         ))}
