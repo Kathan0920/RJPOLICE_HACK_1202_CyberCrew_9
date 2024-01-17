@@ -15,7 +15,7 @@ export default function Lander(props) {
     "container " + (type === "signUp" ? "right-panel-active" : "");
   return (
     <div className="App">
-      <h2>Sign in/up Form</h2>
+      <h2>Cyber Crime Portal</h2>
       <div className={containerClass} id="container">
         <SignUpForm changetype={setType} />
         <SignInForm changecookie={props.changecookie}/>
@@ -24,7 +24,7 @@ export default function Lander(props) {
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
               <p>
-                To keep connected with us please login with your personal info
+                To keep connected with us please login with 
               </p>
               <button
                 className="ghost"
@@ -36,9 +36,9 @@ export default function Lander(props) {
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
+              <p>Enter your personal details and start complaint</p>
               <button
-                className="ghost "
+                className="ghost"
                 id="signUp"
                 onClick={() => handleOnClick("signUp")}
               >

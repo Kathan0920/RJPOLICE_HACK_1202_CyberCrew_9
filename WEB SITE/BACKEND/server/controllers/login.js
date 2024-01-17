@@ -170,3 +170,26 @@ module.exports.valid = async (token) => {
       console.log('Disconnected from MongoDB');
     }
   }
+  module.exports.getapplicationno =async (token)=> {
+    const client = new MongoClient(DBurl);
+    try {
+      // Connect to the MongoDB server
+      await client.connect();
+      const database = client.db('rajasthan_hackthon');
+      const collection = database.collection('incidentform');
+      let randomComponent;
+      while(1){
+        randomComponent = Math.floor(Math.random() * 9000) + 1000;
+        const result = await collection.findOne({applicationNo:randomComponent});
+        if(!result){
+          break;
+        }
+      }
+      return randomComponent
+
+
+    } finally {
+      await client.close();
+      console.log('Disconnected from MongoDB');
+    }
+  }

@@ -1,6 +1,4 @@
   import React, { useEffect, useState } from "react";
-  import './downloadform.css'
-
   import { get, post } from "../Rest";
   function Downloadform() {
     const [data, setdata] = useState([]); 
@@ -80,11 +78,15 @@ console.log(data);
               <img src={item['proof']} alt="noimage" style={{ cursor: 'pointer' }} onClick={handleImageClick} height={"100px"} />
             </div>
               <div>
-                <p>Our Prediction :-
+                <p>Our Peridction :-
                   {JSON.stringify(item['legitment'])} </p>
+                  <p>
+            Police Verification :-
+            {item["verifybypolice"]}
+          </p>
               </div>
               <div>
-                <p>Your Verify :-  </p>
+                <p>Account Freeze Status  :-  </p>
                 <p><label>
             <input
               name={`verify_${item['applicationNo']}`}

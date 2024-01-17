@@ -1,9 +1,9 @@
-#downloadform_section ul {
+.status ul {
     list-style: none;
     display: flex;
     flex-direction: column;
 }
-#downloadform_section ul li{
+.status ul li{
     display: flex;
     flex-direction: row;
     margin: 17px;
@@ -14,6 +14,7 @@
     border: 2px solid red;
     padding: 17px;
 }
-#downloadform_section ul li div{
+.status ul li div{
     margin: 15px;
+    max-width: 15vw;
 }

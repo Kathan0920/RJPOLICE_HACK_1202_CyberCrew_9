@@ -85,7 +85,7 @@ function IncidentForm() {
       whereid != "" &&
       proof != ""
     ) {
-      await post("formupload/upload", {
+      const res = await post("formupload/upload", {
         category,
         subcategory,
         emailtakenby,
@@ -99,9 +99,17 @@ function IncidentForm() {
         description,
         proof,
       });
+      if(res){
+        alert('Uploaded Sucessfully')
+        // document.location=document.location.href
+
+      }else{
+        alert('there is problem in request')
+      }
     } else {
       alert("fill up required information");
     }
+
   };
   const handleimage = async (e) => {
     let reader = new FileReader();

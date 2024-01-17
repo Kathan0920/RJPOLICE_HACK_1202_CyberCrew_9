@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Texttopdf from '../Court_componets/Texttopdf'
 function Dashboard_court() {
   return (
-    <div>Dashboard_court</div>
+    <div><Texttopdf /></div>
   )
 }
 

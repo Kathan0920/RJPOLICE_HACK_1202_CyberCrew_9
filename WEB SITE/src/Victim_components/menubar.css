@@ -1,0 +1,12 @@
+#menubar{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    margin: 12px;
+}
+#menubar >  * {
+    padding: 10px 21px;
+    border-radius: 12px;
+    background: rgb(76, 76, 203);
+    color: white;
+}

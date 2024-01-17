@@ -11,6 +11,8 @@ const loginSchema = new mongoose.Schema({
 const loginModel = mongoose.model("login", loginSchema);
 
 const incidentformSchema = new mongoose.Schema({
+  applicationNo:Number,
+  
   email: String,
   type:String,
   category: String,
@@ -27,7 +29,15 @@ const incidentformSchema = new mongoose.Schema({
   emailtakenby:String,
   whereid:String,
   proof:String,
-  legitment:Boolean,
+
+  legitment:String,
+  
+  verifybypolice:String,
+  verifybypoliceemail:String,
+  
+  verifybybank:String,
+  verifybybankemail:String,
+  
 });
 const incidentformModel = mongoose.model("incidentform", incidentformSchema);
 
