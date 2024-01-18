@@ -102,14 +102,16 @@ console.log(data);
             Your Verification :-
             {item["verifybypolice"]}
           </p>
-          {item['verifybybank']?<p>
+          {item['verifybybank']&&item['bankbool']?<p>
             bank Status :-
             {JSON.stringify(item['verifybybank'])}
-          </p>:''}
-          {item['verifybycourt']?<p>
+          </p>:item['bankbool']?'waiting for bank status':''
+          }
+          <p></p>
+          {item['verifybybank']&&item['bankbool']||(!item['verifybybank'])&&!item['bankbool']?(item['verifybycourt']?<p>
             Court Desicison :-
             {JSON.stringify(item['verifybycourt'])}
-          </p>:''}
+          </p>:'waiting for court descision'):''}
         </div>
       </li>
     ))}

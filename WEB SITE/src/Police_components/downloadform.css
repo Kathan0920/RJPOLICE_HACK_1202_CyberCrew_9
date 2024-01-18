@@ -9,13 +9,11 @@
     margin: 17px;
     overflow: hidden;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    background-color: #f4f4f8;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
-  background-color: #f4f4f8;
 
-    border: 2px solid red;
-    background: #dbdbdb;
     padding: 17px;
 }
 #downloadform_section ul li div{

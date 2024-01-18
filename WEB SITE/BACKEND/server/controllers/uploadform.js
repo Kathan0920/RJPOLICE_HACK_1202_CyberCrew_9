@@ -131,7 +131,10 @@ module.exports.downloadformsnotverify = async (token) => {
                 { bankbool: true },
                 { verifybybank: { $exists: true } },
                 { verifybypolice: "yes" },
-                { verifybypoliceemail: { $exists: true } }
+                { verifybypoliceemail: { $exists: true } },
+                { verifybycourt: { $exists: false } },
+                { verifybycourtemail: { $exists: false } }
+                
                 // Add other conditions if needed
               ]
             },
@@ -140,7 +143,9 @@ module.exports.downloadformsnotverify = async (token) => {
                 { bankbool: false },
                 { verifybybank: { $exists: false } },
                 { verifybypolice: "yes" },
-                { verifybypoliceemail: { $exists: true } }
+                { verifybypoliceemail: { $exists: true } },
+                { verifybycourt: { $exists: false } },
+                { verifybycourtemail: { $exists: false } }
                 // Add other conditions if needed
               ]
             }
@@ -204,15 +209,30 @@ module.exports.downloadformsnotverify = async (token) => {
               
             } else if (check == "Court") {
               let data = await incidentformModel.find(
-                {
-                  verifybypolice: "yes",
-                  verifybypoliceemail: { $exists: true },
-                  verifybybank: "yes",
-                  verifybybankemail: {$exists:true},
-                  verifybycourt: { $exists: true },
-                  verifybycourtemail: emaill,
-                  
-                },
+                {$or: [
+                  {
+                    $and: [
+                      { bankbool: true },
+                      { verifybybank: { $exists: true } },
+                      { verifybypolice: "yes" },
+                      { verifybypoliceemail: { $exists: true } },
+                      { verifybycourt: { $exists: true } },
+                      { verifybycourtemail: { $exists: true } }
+                      // Add other conditions if needed
+                    ]
+                  },
+                  {
+                    $and: [
+                      { bankbool: false },
+                      { verifybybank: { $exists: false } },
+                      { verifybypolice: "yes" },
+                      { verifybypoliceemail: { $exists: true } },
+                      { verifybycourt: { $exists: true } },
+                      { verifybycourtemail: { $exists: true } }
+                      // Add other conditions if needed
+                    ]
+                  }
+                ]},
                 { __v: 0, __id: 0 }
                 );
                 // console.log(object);

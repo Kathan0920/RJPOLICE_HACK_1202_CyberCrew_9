@@ -97,15 +97,16 @@ function statusincident() {
              Application Acceped:-
             {item["verifybypolice"]}
           </p>:'Waiting for Police Verification'}
-          {item['verifybypolice']=='yes'?item['verifybybank']?<p>
+          {item['verifybypolice']=='yes'?item['verifybybank']&&item['bankbool']?<p>
             bank Status :-
-            {item['verifybybank']}
-          </p>:'waiting for bank response':'  '}
+            {JSON.stringify(item['verifybybank'])}
+          </p>:item['bankbool']?'waiting for bank status':'':''
+          }
           <p></p>
-          {item['verifybypolice']=='yes'?item['verifybycourt']?<p>
+          {item['verifybypolice']=='yes'&&item['verifybybank']&&item['bankbool']||item['verifybypolice']=='yes'&&(!item['verifybybank'])&&!item['bankbool']?(item['verifybycourt']?<p>
             Court Descion :-
             {item['verifybycourt']}
-          </p>:'waiting for court Descion':''}
+          </p>:'waiting for court desicion'):''}
           </div>
           </li>
         ))}
