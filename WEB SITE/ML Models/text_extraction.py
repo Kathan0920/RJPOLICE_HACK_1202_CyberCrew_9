@@ -129,6 +129,6 @@ def get_user_input(pathh):
     else:
         print(f"failed to extract text from {file_type}")
 
-    print(result)
+    # print(result)
     return result
 
