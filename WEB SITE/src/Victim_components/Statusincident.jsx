@@ -107,6 +107,7 @@ function statusincident() {
             Court Descion :-
             {item['verifybycourt']}
           </p>:'waiting for court desicion'):''}
+          {item['verifybycourt']=='yes'&&item['bankbool']?item['defreezestatus']?<p>Defreeze Status : -{item['defreezestatus']}</p>:'Waiting for bank':''}
           </div>
           </li>
         ))}

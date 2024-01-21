@@ -13,16 +13,16 @@ vectorizer = joblib.load('your_vectorizer.pkl')
 def predict():
     try:
         data = request.get_json(force=True)
-        input_mail = data['input_mail']
+        input_mail = data.get('description')
         print(input_mail)
         # Transform input data using the fitted vectorizer
         input_data_features = vectorizer.transform([input_mail])
         
         prediction = model.predict(input_data_features)[0]
         if prediction == 1:
-            result = "Spam mail"
+            result = "true"
         else:
-            result = "Ham mail"
+            result = "false"
 
         return jsonify({'legitment': result})
     except Exception as e:

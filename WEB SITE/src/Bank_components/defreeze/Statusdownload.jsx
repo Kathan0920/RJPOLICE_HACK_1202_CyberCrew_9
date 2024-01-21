@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { get, post } from "../Rest";
+import { get, post } from "../../Rest";
 function Statusdownload() {
   const [data, setdata] = useState([]); 
   const [verifications,setVerifications] = useState({}); 
@@ -14,11 +14,11 @@ console.log(data);
   const handlesubmit = async(e)=>{
     e.preventDefault()
     await post('formupload/verifybypolice',{verifybypolice:verifications[`verify_${e.target.name}`],applicationNo:e.target.name})
-    setdata(await get("formupload/downloadforms"))
+    setdata(await get("formupload/downloadformsfordefreeze"))
   }
     useEffect(() => {
       (async () => {
-        setdata(await get("formupload/downloadforms"))
+        setdata(await get("formupload/downloadformsfordefreeze"))
       })()
     }, []);
   const handleImageClick = (e) => {
@@ -102,12 +102,15 @@ console.log(data);
             Police Verification :-
             {item["verifybypolice"]}
           </p>
-          {item['verifybybank']?<p>
-            Bank Status :-
-            {item["verifybybank"]}</p>:''}
-         <p>
-            Court Decision :-
+          <p>Bank Status :-
+            {item['verifybybank']}
+          </p>
+          <p>Court Desion :-
             {item['verifybycourt']}
+          </p>
+          <p>
+            Bank De - Freeze Status :-
+            {item["defreezestatus"]}
           </p>
         </div>
       </li>

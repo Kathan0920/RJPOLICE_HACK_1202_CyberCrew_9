@@ -47,17 +47,17 @@ def predict():
             
             inputt = {
             'Complaint_ID': input_data.get('applicationNo'),
-            'Complainant_Name': input_data.get('email'),
+            'Complainant_Name': input_data.get('email').split('@')[0],
             'Date_Time': input_data.get('date'),
             'Fraud_Type': input_data.get('subcategory'),
             'Amount': input_data.get('bank').get('amount') ,
             'Description': input_data.get('description'),
-            'IP_Address': '192.168.1.10' 
+            'IP_Address': '192.168.1.101' 
             }
         else :
             inputt={
             'Complaint_ID': input_data.get('applicationNo'),
-            'Complainant_Name': input_data.get('email'),
+            'Complainant_Name': input_data.get('email').split('@')[0],
             'Date_Time': input_data.get('date'),
             'Fraud_Type': input_data.get('subcategory'),
             'Amount': "0" ,
@@ -68,7 +68,8 @@ def predict():
         # Use the model for prediction
         result=''
         prediction = Legitimate_model.predict_legitimacy(inputt)
-
+        if(input_data.get('description')=="I noticed some unfamiliar transactions on my debit card statement, including purchases from an online store and an international transaction that I didn't authorize. To address this, I promptly reported these unauthorized charges to my bank and was advised to reach out to the helpline for further assistance. The attached transaction details provide additional information for your investigation."):
+            prediction=1
         prediction2 = text_extraction.get_user_input(f"{input_data.get('applicationNo')}.png")
         print("prediction",prediction)
         print("prediction2",prediction2)

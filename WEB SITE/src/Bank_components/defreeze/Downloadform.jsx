@@ -1,5 +1,5 @@
   import React, { useEffect, useState } from "react";
-  import { get, post } from "../Rest";
+  import { get, post } from "../../Rest";
   function Downloadform() {
     const [data, setdata] = useState([]); 
     const [verifications,setVerifications] = useState({}); 
@@ -12,12 +12,12 @@ console.log(data);
 
     const handlesubmit = async(e)=>{
       e.preventDefault()
-      await post('formupload/verifybypolice',{verifybypolice:verifications[`verify_${e.target.name}`],applicationNo:e.target.name})
-      setdata(await get("formupload/downloadformsnotverify"))
+      await post('formupload/defreezebybank',{verifybypolice:verifications[`verify_${e.target.name}`],applicationNo:e.target.name})
+      setdata(await get("formupload/downloadformsnotverifyfordefreeze"))
     }
       useEffect(() => {
         (async () => {
-          setdata(await get("formupload/downloadformsnotverify"))
+          setdata(await get("formupload/downloadformsnotverifyfordefreeze"))
         })()
       }, []);
     const handleImageClick = (e) => {

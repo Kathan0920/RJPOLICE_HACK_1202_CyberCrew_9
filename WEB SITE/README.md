@@ -1,8 +1,16 @@
-# React + Vite
+#how to install
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+terminal 1: npm i
+terminal 2:cd .\BACKEND\
+           npm i
+terminal 3:pip i pillow joblib flask scikit-learn xgboost pandas xgboost PyMuPDF Image 
 
-Currently, two official plugins are available:
+install tesseract from git hub
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+#for run
+terminal 1: npm run dev
+terminal 2: cd .\BACKEND\
+            npm run dev
+terminal 3: cd '.\ML Models\'
+            python './flask2.py'

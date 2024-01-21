@@ -7,6 +7,7 @@ export const post = async (url, payload) => {
     // if (!cookies) {
     //   cookies = -1;
     // }
+    console.log(payload);
     const response = await fetch(`${URL}${url}`, {
       method: "POST",
       headers: {

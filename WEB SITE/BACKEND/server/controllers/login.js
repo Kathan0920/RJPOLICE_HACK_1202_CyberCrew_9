@@ -39,8 +39,9 @@ module.exports.signup = async function (signup_data) {
     } else {
       return {message:"password does not match",okk:false};
     }
-  } catch {
-  } finally {
+  } catch(error){
+    console.log(error)
+  }finally {
     await mdbconnect.disconnect();
   }
 };
@@ -66,6 +67,8 @@ module.exports.login = async (login_data, res) => {
     } else {
       return {message:"no email found",okk:false};
     }
+  }catch(error){
+    console.log(error)
   } finally {
     await mongoose.disconnect();
   }
@@ -75,6 +78,8 @@ module.exports.signout = async (req, res) => {
   try{
     res.cookie("token", "", { expires: new Date() }).json(`sign outed`);
 
+  }catch(error){
+    console.log(error)
   }finally {
     await mongoose.disconnect();
   }
@@ -82,24 +87,33 @@ module.exports.signout = async (req, res) => {
 
 //token = req.cookies.token
 module.exports.valid = async (token) => {
-  let mdbconnect = await mongoose.connect(DBurl, {
-    dbName: "rajasthan_hackthon",
-  });
-  try {
-    if (token&&token!='') {
+  const client = new MongoClient(DBurl);
+    try {
+      // Connect to the MongoDB server
+      await client.connect();
+      console.log('Connected to MongoDB');
+  
+      // Specify the database and collection
+      const database = client.db('rajasthan_hackthon');
+      const collection = database.collection('logins');
+      
       const valid = jwt.verify(token, secretKey);
-      let id = await loginModel.findById(valid.email); //email is id in cookie
-      if (id) {
-        return true;
-      } else {
-        return false;
+      // Replace 'your-document-id' with the actual ObjectId you want to find
+      const projection = { _id: 0, password: 0 ,__v:0 };
+      const result = await collection.findOne({_id:new ObjectId(valid.email)},{projection});
+      if(result){
+
+        return true
+      }else{
+        return false
       }
-    } else {
-      return false;
+    } catch(error){
+      console.log(error)
+    }finally {
+      // Close the connection when done
+      await client.close();
+      console.log('Disconnected from MongoDB');
     }
-  }finally {
-    await mdbconnect.disconnect();
-  }
 };
 
   // module.exports.email = async (token) => {
@@ -141,7 +155,10 @@ module.exports.valid = async (token) => {
       }else{
         return false
       }
-    } finally {
+    } catch(error){
+      console.log(error)
+    }
+    finally {
       // Close the connection when done
       await client.close();
       console.log('Disconnected from MongoDB');
@@ -164,7 +181,9 @@ module.exports.valid = async (token) => {
       const result = await collection.findOne({_id:new ObjectId(valid.email)},{projection});
       console.log(result);
       return result.email
-    } finally {
+    } catch(error){
+      console.log(error)
+    }finally {
       // Close the connection when done
       await client.close();
       console.log('Disconnected from MongoDB');
@@ -188,7 +207,9 @@ module.exports.valid = async (token) => {
       return randomComponent
 
 
-    } finally {
+    } catch(error){
+      console.log(error)
+    }finally {
       await client.close();
       console.log('Disconnected from MongoDB');
     }

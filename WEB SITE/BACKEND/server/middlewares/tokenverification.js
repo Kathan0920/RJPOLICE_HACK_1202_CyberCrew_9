@@ -16,8 +16,6 @@ async function tokenverification(req, res, next) {
     
   } catch (error) {
     console.log("tokenverification" , error);
-  }finally{
-    
   }
 }
 
